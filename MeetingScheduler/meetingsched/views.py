@@ -36,11 +36,11 @@ def login(request):
             return redirect("meetingsched:login")
     return render(request,"login.html")
 
-def create_appointment(request):
+def create_meeting(request):
     if "user" in request.session:
         if request.method=="POST":
             name=request.POST.get("name")
-            description=request.POST.get("description")
+            agenda=request.POST.get("description")
             time=request.POST.get("time")
             date=request.POST.get("date")
             try:
@@ -114,7 +114,7 @@ def register(request):
         try:
             user = client.query(q.get(q.match(q.index("users_index"), username)))
             messages.add_message(request, messages.INFO, 'User already exists with that username.')
-            return redirect("App:register")
+            return redirect("meetingsched:register")
         except:
             user = client.query(q.create(q.collection("users"), {
                 "data": {

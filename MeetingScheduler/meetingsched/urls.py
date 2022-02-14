@@ -9,9 +9,9 @@ urlpatterns = [
     path("", views.login, name="login"),
     path("login", views.login, name="login"),
     path("dashboard", views.dashboard, name="dashboard"),
-    path("create-meeting", views.create_appointment, name="create-meeting"),
-    path("today-meeting", views.today_appointment, name="today-meeting"),
-    path("all-meeting", views.all_appointment, name="all-meeting"),
+    path("create-meeting", views.create_meeting, name="create-meeting"),
+    path("today-meeting", views.today_meeting, name="today-meeting"),
+    path("all-meeting", views.all_meeting, name="all-meeting"),
     path("register", views.register, name="register"),
 
 ]

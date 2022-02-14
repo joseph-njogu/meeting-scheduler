@@ -20,26 +20,36 @@
  <body>
   <div class="main">
    <p align="center" class="sign">
-     Welcome {{user}}
+    You have {{count}} Meeting Today
    </p>
    <center>
-     <form class="form1">
-       {% if messages %}
-<ul class="messages">
-    {% for message in messages %}
-    <li{% if message.tags %} class="{{ message.tags }}"{% endif %} style="color:red;">{{ message }}</li>
-    {% endfor %}
-</ul>
-{% endif %}
-         <a href="create-meeting"><button type="button" class="btn btn-rounded btn-primary" style="background-color:purple !important;">Create a Meeting</button></a>
-     </form>
-     <form class="form1">
-         <a href="today-meeting"><button type="button" class="btn btn-rounded btn-primary" style="background-color:purple !important;">Meetings Today</button></a>
-     </form>
-     <form class="form1">
-         <a href="all-meeting"><button type="button" class="btn btn-rounded btn-primary" style="background-color:purple !important;">All Meetings</button></a>
-     </form>
-     </center>
+     <div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title">{{meeting.name}}</h5>
+    <p class="card-text">{{ameeting.agenda}}</p>
+    <p class="card-text">Date: {{meeting.date}}</p>
+    <p class="card-text">Time:{{meeting.time}}</p>
+  </div>
+  {% if meeting.status == "True" %}
+  <a class="btn btn-primary">Completed</a>
+  {% else %}
+  <a href="?complete=''&page={{page_num}}" class="btn btn-danger">Click to complete</a>
+  {% endif %}
+</div>
+   <nav aria-label="...">
+     <ul class="pagination">
+       <li class="page-item disabled">
+         <a class="page-link" href="?page={{ prev_page }}" tabindex="-1">Previous</a>
+       </li>
+       <li class="page-item">
+         <a class="page-link" href="?page={{next_page }}">Next</a>
+       </li>
+     </ul>
+</nav>
+<a href="dashboard"> <button class="btn btn-danger btn-rounded"  type="button">Back</button></a>
+<a href="?delete=''&page={{page_num}}"> <button class="btn btn-danger btn-rounded"  type="button">Delete</button></a>
+</center>
+</center>
   </div>
  </body>
 </html>
