@@ -11,8 +11,22 @@ import hashlib
 import datetime
 
 
+# client = FaunaClient(
+#   secret="fnAEfZbxZ5AAQiTPS3oIzZ2zOJiaYe2SnEOPzVn9",
+#   domain="localhost",
+#   port=8443,
+#   scheme="http"
+# )
 
-client = FaunaClient(secret="fnAEfZbxZ5AAQiTPS3oIzZ2zOJiaYe2SnEOPzVn9")
+client = FaunaClient(
+  secret="fnAEfZbxZ5AAQiTPS3oIzZ2zOJiaYe2SnEOPzVn9",
+  domain="db.us.fauna.com",
+  port=443,
+  scheme="https"
+)
+
+# client = FaunaClient(secret="fnAEfZbxZ5AAQiTPS3oIzZ2zOJiaYe2SnEOPzVn9")
+# domain = 'db.us.fauna.com'
 indexes = client.query(q.paginate(q.indexes()))
 
 
