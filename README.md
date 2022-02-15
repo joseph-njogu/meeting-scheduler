@@ -1,4 +1,4 @@
-<img src="logo2.jpg" align="center">
+<img src="logo2.jpg">
 
 # meeting-scheduler
 A web application for scheduling meeting. In the current digitized world and in the midst of 
