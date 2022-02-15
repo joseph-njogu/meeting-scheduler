@@ -28,13 +28,13 @@
       <h2>Create a Meeting</h2>
      </div>
      <form method="POST">
-       {% if messages %}
+  <!--      {% if messages %}
    <ul class="messages">
     {% for message in messages %}
     <li{% if message.tags %} class="{{ message.tags }}"{% endif %} style="color:red;">{{ message }}</li>
     {% endfor %}
    </ul>
-   {% endif %}
+   {% endif %} -->
         {% csrf_token %}
      <div class="form-item">
       <p class="formLabel">
