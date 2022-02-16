@@ -73,8 +73,9 @@ def create_meeting(request):
     #                 }
     #             }))
     #             messages.add_message(request, messages.INFO, 'Meeting Scheduled Successfully.')
-    return redirect("meetingsched:dashboard")
+    # return redirect("meetingsched:create-meeting")
     return render(request,"meet/create-meeting.html")
+    return redirect("meetingsched:create-meeting")
     # else:
     #     return HttpResponseNotFound("Page not found")
 
@@ -88,21 +89,37 @@ def dashboard(request):
     #     return HttpResponseNotFound("Page not found")
 
 def today_meeting(request):
-    # if "user" in request.session:
-    # meetings=client.query(q.paginate(q.match(q.index("events_today_paginate"), request.session["user"]["username"],str(datetime.date.today()))))["data"]
-    meetings_count=len(meetings)
-    page_number = int(request.GET.get('page', 1))
-    meeting = client.query(q.get(q.ref(q.collection("Events"), meetings[page_number-1].id())))["data"]
-    if request.GET.get("complete"):
-        client.query(q.update(q.ref(q.collection("Events"), meetings[page_number-1].id()),{"data": {"status": "True"}}))["data"]
-        return redirect("meetingsched:today-meeting")
-    if request.GET.get("delete"):
-        client.query(q.delete(q.ref(q.collection("Events"), meetings[page_number-1].id())))
-        return redirect("meetingsched:today-meeting")
-    context={"count":meetings_count,"meeting":meeting,"page_num":page_number, "next_page": min(meetings_count, page_number + 1), "prev_page": max(1, page_number - 1)}
-    return render(request,"today-meeting.html",context)
-    # else:
-    #     return HttpResponseNotFound("Page not found")
+    if "user" in request.session:
+        meetings=client.query(q.paginate(q.match(q.index("events_today_paginate"), request.session["user"]["username"],str(datetime.date.today()))))["data"]
+        meetings_count=len(meetings)
+        page_number = int(request.GET.get('page', 1))
+        meeting = client.query(q.get(q.ref(q.collection("Events"), meetings[page_number-1].id())))["data"]
+        if request.GET.get("complete"):
+            client.query(q.update(q.ref(q.collection("Events"), meetings[page_number-1].id()),{"data": {"status": "True"}}))["data"]
+            return redirect("meetingsched:today-meeting")
+        if request.GET.get("delete"):
+            client.query(q.delete(q.ref(q.collection("Events"), meetings[page_number-1].id())))
+            return redirect("meetingsched:today-meeting")
+        context={"count":meetings_count,"meeting":meeting,"page_num":page_number, "next_page": min(meetings_count, page_number + 1), "prev_page": max(1, page_number - 1)}
+        return render(request,"today-meeting.html",context)
+    else:
+        return HttpResponseNotFound("Page not found")
+def past_meeting(request):
+    if "user" in request.session:
+        meetings=client.query(q.paginate(q.match(q.index("events_today_paginate"), request.session["user"]["username"],str(datetime.date.today()))))["data"]
+        meetings_count=len(meetings)
+        page_number = int(request.GET.get('page', 1))
+        meeting = client.query(q.get(q.ref(q.collection("Events"), meetings[page_number-1].id())))["data"]
+        if request.GET.get("complete"):
+            client.query(q.update(q.ref(q.collection("Events"), meetings[page_number-1].id()),{"data": {"status": "True"}}))["data"]
+            return redirect("meetingsched:past-meeting")
+        if request.GET.get("delete"):
+            client.query(q.delete(q.ref(q.collection("Events"), meetings[page_number-1].id())))
+            return redirect("meetingsched:past-meeting")
+        context={"count":meetings_count,"meeting":meeting,"page_num":page_number, "next_page": min(meetings_count, page_number + 1), "prev_page": max(1, page_number - 1)}
+        return render(request,"past-meeting.html",context)
+    else:
+        return HttpResponseNotFound("Page not found")
 
 
 def all_meeting(request):

@@ -20,7 +20,7 @@
  <body>
   <div class="main">
    <p align="center" class="sign">
-     Welcome {{user}}
+  <span style="color:#e8153f;font-weight:bold;">Meeting</span><span >Scheduler</span>
    </p>
    <center>
      <form class="form1">
@@ -31,14 +31,21 @@
     {% endfor %}
 </ul>
 {% endif %}
+      <form>
          <a href="create-meeting"><button type="button" class="btn btn-rounded btn-primary" style="background-color:purple !important;">Create a Meeting</button></a>
      </form>
      <form class="form1">
-         <a href="today-meeting"><button type="button" class="btn btn-rounded btn-primary" style="background-color:purple !important;">Meetings Today</button></a>
+        <a href="today-meeting"><button type="button" class="btn btn-rounded btn-primary" style="background-color:purple !important;">Past Meetings</button></a>
+      </form>
+      <form class="form1">
+        <a href="today-meeting"><button type="button" class="btn btn-rounded btn-primary" style="background-color:purple !important;">Meetings Today</button></a>
+     </form>
      </form>
      <form class="form1">
          <a href="all-meeting"><button type="button" class="btn btn-rounded btn-primary" style="background-color:purple !important;">All Meetings</button></a>
      </form>
+     <footer>Ⓒ COSEKE Technical 2022</footer>
+     <marquee>Developed with ❤️ by Joseph </marquee>
      </center>
   </div>
  </body>
